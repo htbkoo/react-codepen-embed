@@ -1,5 +1,8 @@
 # ts-react-codepen-embed
 
+[![NPM](https://img.shields.io/npm/v/ts-react-codepen-embed.svg)](https://www.npmjs.com/package/ts-react-codepen-embed)
+[![Known Vulnerabilities](https://snyk.io/test/github/htbkoo/ts-react-codepen-embed/badge.svg?targetFile=package.json)](https://snyk.io/test/github/htbkoo/ts-react-codepen-embed?targetFile=package.json)
+
 React component for embedding pens from [`Codepen.io`](https://codepen.io), with responsive height and ability to embed multiple pens in the same page this time
 
 ## TL;DR
@@ -21,17 +24,17 @@ However, I need the following few features as well so I had decided to work on t
 
 ```bash
 #using npm cli
-npm install --save react-codepen-embed
+npm install --save ts-react-codepen-embed
 
 #using yarn
-yarn add react-codepen-embed
+yarn add ts-react-codepen-embed
 ```
 
 ## Usage
 
 ```javascript
 import React from "react";
-import Codepen from "react-codepen-embed";
+import Codepen from "ts-react-codepen-embed";
 
 const CodepenEmbedded = () => {
   return <Codepen hash="JyxeVP" user="shettypuneeth" />;
