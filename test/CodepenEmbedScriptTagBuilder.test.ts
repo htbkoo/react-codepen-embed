@@ -27,13 +27,11 @@ describe('CodepenEmbedScriptTagBuilder', function () {
             builder.appendTo(mockElement, () => mockScriptTag);
 
             // then
-
-            const expectedTag = defaultAttributes();
-            expectedTag[attribute] = overrideTo;
-            expect(mockScriptTag).toMatchObject(expectedTag);
+            const expectedAttributes = defaultAttributes();
+            expectedAttributes[attribute] = overrideTo;
+            expect(mockScriptTag).toMatchObject(expectedAttributes);
 
             expect(mockElement.appendChild).toBeCalledWith(mockScriptTag)
-
         })
     );
 
