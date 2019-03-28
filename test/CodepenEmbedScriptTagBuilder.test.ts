@@ -1,7 +1,7 @@
 import CodepenEmbedScriptTagBuilder from "../src/CodepenEmbedScriptTagBuilder";
 
 describe('CodepenEmbedScriptTagBuilder', function () {
-    it('should create builder', function () {
+    it('should create builder with default options', function () {
         // given
         const mockElement = {appendChild: jest.fn()}, mockScriptTag: any = {};
         const builder = new CodepenEmbedScriptTagBuilder();
