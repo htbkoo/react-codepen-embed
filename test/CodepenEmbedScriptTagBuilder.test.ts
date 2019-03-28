@@ -23,10 +23,7 @@ describe('CodepenEmbedScriptTagBuilder', function () {
     it('should create builder without "createScriptTag" argument', function () {
         // given
         const mockElement = {appendChild: jest.fn()}, mockScriptTag: any = {};
-
-        const mockDocument = {createElement: jest.fn()};
-        when(mockDocument.createElement).calledWith("script").mockReturnValue(mockScriptTag);
-        (global as any).document = mockDocument;
+        mockDocumentCreateElement("script", mockScriptTag);
 
         const builder = new CodepenEmbedScriptTagBuilder();
 
@@ -73,5 +70,11 @@ describe('CodepenEmbedScriptTagBuilder', function () {
 
     function builderWithOverrides({methodName, overrideTo}: { methodName: string, overrideTo: any }) {
         return new CodepenEmbedScriptTagBuilder()[methodName](overrideTo);
+    }
+
+    function mockDocumentCreateElement(tagName: string, tag: any) {
+        const mockDocument = {createElement: jest.fn()};
+        when(mockDocument.createElement).calledWith(tagName).mockReturnValue(tag);
+        (global as any).document = mockDocument;
     }
 });
