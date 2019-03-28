@@ -10,12 +10,7 @@ describe('CodepenEmbedScriptTagBuilder', function () {
         builder.appendTo(mockElement, () => mockScriptTag as any);
 
         // then
-        expect(mockScriptTag).toMatchObject({
-            src: 'https://production-assets.codepen.io/assets/embed/ei.js',
-            async: false,
-            onload: null,
-            onerror: null,
-        });
+        expect(mockScriptTag).toMatchObject(defaultAttributes());
 
         expect(mockElement.appendChild).toBeCalledWith(mockScriptTag)
     });
@@ -33,12 +28,7 @@ describe('CodepenEmbedScriptTagBuilder', function () {
 
             // then
 
-            const expectedTag = {
-                src: 'https://production-assets.codepen.io/assets/embed/ei.js',
-                async: false,
-                onload: null,
-                onerror: null,
-            };
+            const expectedTag = defaultAttributes();
             expectedTag[attribute] = overrideTo;
             expect(mockScriptTag).toMatchObject(expectedTag);
 
@@ -46,4 +36,13 @@ describe('CodepenEmbedScriptTagBuilder', function () {
 
         })
     );
+
+    function defaultAttributes() {
+        return {
+            src: 'https://production-assets.codepen.io/assets/embed/ei.js',
+            async: false,
+            onload: null,
+            onerror: null,
+        };
+    }
 });
