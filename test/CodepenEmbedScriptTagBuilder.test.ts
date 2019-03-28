@@ -1,6 +1,9 @@
 import CodepenEmbedScriptTagBuilder from "../src/CodepenEmbedScriptTagBuilder";
 
 describe('CodepenEmbedScriptTagBuilder', function () {
+    const NO_OP = () => {
+    };
+
     it('should create builder with default options', function () {
         // given
         const mockElement = {appendChild: jest.fn()}, mockScriptTag: any = {};
@@ -16,7 +19,10 @@ describe('CodepenEmbedScriptTagBuilder', function () {
     });
 
     [
-        {attribute: "src", overrideTo: "some src", methodName: "withSrc"}
+        {attribute: "src", overrideTo: "some src", methodName: "withSrc"},
+        {attribute: "async", overrideTo: true, methodName: "setAsync"},
+        {attribute: "onload", overrideTo: NO_OP, methodName: "withOnLoadHandler"},
+        {attribute: "onerror", overrideTo: NO_OP, methodName: "withOnErrorHandler"},
     ].forEach(({attribute, overrideTo, methodName}) =>
         it(`should be able to override "${attribute}" of script tag created`, function () {
             // given
@@ -44,7 +50,7 @@ describe('CodepenEmbedScriptTagBuilder', function () {
         };
     }
 
-    function builderWithOverrides({methodName, overrideTo}: { methodName: string, overrideTo: string }) {
+    function builderWithOverrides({methodName, overrideTo}: { methodName: string, overrideTo: any }) {
         return new CodepenEmbedScriptTagBuilder()[methodName](overrideTo);
     }
 });
