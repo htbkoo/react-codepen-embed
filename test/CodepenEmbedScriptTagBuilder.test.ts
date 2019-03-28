@@ -21,7 +21,7 @@ describe('CodepenEmbedScriptTagBuilder', function () {
         it(`should be able to override "${attribute}" of script tag created`, function () {
             // given
             const mockElement = {appendChild: jest.fn()}, mockScriptTag: any = {};
-            const builder = new CodepenEmbedScriptTagBuilder()[methodName](overrideTo);
+            const builder = builderWithOverrides({methodName, overrideTo});
 
             // when
             builder.appendTo(mockElement, () => mockScriptTag);
@@ -42,5 +42,9 @@ describe('CodepenEmbedScriptTagBuilder', function () {
             onload: null,
             onerror: null,
         };
+    }
+
+    function builderWithOverrides({methodName, overrideTo}: { methodName: string, overrideTo: string }) {
+        return new CodepenEmbedScriptTagBuilder()[methodName](overrideTo);
     }
 });
