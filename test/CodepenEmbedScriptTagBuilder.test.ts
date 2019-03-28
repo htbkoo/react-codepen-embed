@@ -7,7 +7,7 @@ describe('CodepenEmbedScriptTagBuilder', function () {
         const builder = new CodepenEmbedScriptTagBuilder();
 
         // when
-        builder.appendTo(mockElement, () => mockScriptTag as any);
+        builder.appendTo(mockElement, () => mockScriptTag);
 
         // then
         expect(mockScriptTag).toMatchObject(defaultAttributes());
