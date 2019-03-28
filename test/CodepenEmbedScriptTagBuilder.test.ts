@@ -1,3 +1,5 @@
+import {when} from 'jest-when'
+
 import CodepenEmbedScriptTagBuilder from "../src/CodepenEmbedScriptTagBuilder";
 
 describe('CodepenEmbedScriptTagBuilder', function () {
@@ -11,6 +13,25 @@ describe('CodepenEmbedScriptTagBuilder', function () {
 
         // when
         builder.appendTo(mockElement, () => mockScriptTag);
+
+        // then
+        expect(mockScriptTag).toMatchObject(defaultAttributes());
+
+        expect(mockElement.appendChild).toBeCalledWith(mockScriptTag)
+    });
+
+    it('should create builder without "createScriptTag" argument', function () {
+        // given
+        const mockElement = {appendChild: jest.fn()}, mockScriptTag: any = {};
+
+        const mockDocument = {createElement: jest.fn()};
+        when(mockDocument.createElement).calledWith("script").mockReturnValue(mockScriptTag);
+        (global as any).document = mockDocument;
+
+        const builder = new CodepenEmbedScriptTagBuilder();
+
+        // when
+        builder.appendTo(mockElement);
 
         // then
         expect(mockScriptTag).toMatchObject(defaultAttributes());
