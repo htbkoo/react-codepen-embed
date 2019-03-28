@@ -19,4 +19,31 @@ describe('CodepenEmbedScriptTagBuilder', function () {
 
         expect(mockElement.appendChild).toBeCalledWith(mockScriptTag)
     });
+
+    [
+        {attribute: "src", overrideTo: "some src", methodName: "withSrc"}
+    ].forEach(({attribute, overrideTo, methodName}) =>
+        it(`should be able to override "${attribute}" of script tag created`, function () {
+            // given
+            const mockElement = {appendChild: jest.fn()}, mockScriptTag: any = {};
+            const builder = new CodepenEmbedScriptTagBuilder()[methodName](overrideTo);
+
+            // when
+            builder.appendTo(mockElement, () => mockScriptTag);
+
+            // then
+
+            const expectedTag = {
+                src: 'https://production-assets.codepen.io/assets/embed/ei.js',
+                async: false,
+                onload: null,
+                onerror: null,
+            };
+            expectedTag[attribute] = overrideTo;
+            expect(mockScriptTag).toMatchObject(expectedTag);
+
+            expect(mockElement.appendChild).toBeCalledWith(mockScriptTag)
+
+        })
+    );
 });
