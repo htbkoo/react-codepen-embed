@@ -30,13 +30,13 @@ class CodepenEmbedScriptTagBuilder implements ScriptTagBuilder {
         return this;
     }
 
-    appendTo(element, createScriptTag = createDefaultScriptTag) {
+    appendTo(containerElement, createScriptTag = createDefaultScriptTag) {
         const script = createScriptTag();
         script.src = this.src;
         script.async = this.isAsync;
         script.onload = this.onload;
         script.onerror = this.onerror;
-        element.appendChild(script);
+        containerElement.appendChild(script);
     }
 }
 
