@@ -5,10 +5,12 @@ import {shallow} from "enzyme";
 import ReactCodepen from "../../src";
 
 describe('<ReactCodepen/>', function () {
-    it('should mount without error', function () {
+    it('should render "null" if not loaded and no loader provided', function () {
         // given
-        shallow(<ReactCodepen hash="someHash" user="someUser" shouldLoadScript={false}/>);
         // when
+        const wrapper = shallow(<ReactCodepen hash="someHash" user="someUser" shouldLoadScript={false}/>);
+
         // then
+        expect(wrapper.getElement()).toBe(null);
     });
 });
