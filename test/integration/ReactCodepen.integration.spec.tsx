@@ -1,4 +1,3 @@
-// import "./jsdomSetup";
 import * as React from "react";
 import {when} from 'jest-when'
 import {mount} from "enzyme";
