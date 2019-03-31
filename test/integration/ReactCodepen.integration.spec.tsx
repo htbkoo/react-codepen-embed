@@ -1,9 +1,9 @@
-import "./jsdomSetup";
+// import "./jsdomSetup";
 import * as React from "react";
 import {when} from 'jest-when'
-import {mount, shallow} from "enzyme";
+import {mount} from "enzyme";
 
-import ReactCodepen from "../src";
+import ReactCodepen from "../../src";
 
 describe('<ReactCodepen/> - integration tests', function () {
     it('should mount without error', function () {

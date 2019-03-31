@@ -1,6 +1,6 @@
 import {when} from 'jest-when'
 
-import {CodepenEmbedScriptTagBuilder} from "../src/index";
+import {CodepenEmbedScriptTagBuilder} from "../../src";
 
 describe('CodepenEmbedScriptTagBuilder', function () {
     const NO_OP = () => {
