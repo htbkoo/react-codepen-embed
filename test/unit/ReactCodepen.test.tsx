@@ -13,4 +13,17 @@ describe('<ReactCodepen/>', function () {
         // then
         expect(wrapper.isEmptyRender()).toBe(true);
     });
+
+    it('should render loader if not loaded and loader is provided', function () {
+        // given
+        const loader = <div id="loader"/>;
+
+        // when
+        const wrapper = shallow(<ReactCodepen hash="someHash" user="someUser" shouldLoadScript={false}
+                                              loader={() => loader}/>);
+
+        // then
+        expect(wrapper.exists(".codepen")).toEqual(true);
+        expect(wrapper.find(".codepen").exists("div")).toEqual(true);
+    });
 });
