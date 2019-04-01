@@ -88,10 +88,10 @@ describe('<ReactCodepen/>', function () {
         return {
             contains(selector: string) {
                 expect(wrapper.exists(selector)).toEqual(true);
-                const codepenWrapper = wrapper.find(selector);
+                const childWrapper = wrapper.find(selector);
                 return {
                     thatHasProps(expectedProps: object) {
-                        expect(codepenWrapper.props()).toMatchObject(expectedProps);
+                        expect(childWrapper.props()).toMatchObject(expectedProps);
                     }
                 }
             }
