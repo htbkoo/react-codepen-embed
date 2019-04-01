@@ -35,7 +35,8 @@ describe('<ReactCodepen/>', function () {
                 "className": "codepen",
             });
 
-        expect(wrapper.find(".codepen").exists("div")).toEqual(true);
+        assertWrapper(wrapper.find(".codepen"))
+            .contains("div");
     });
 
     it('should render content if loaded', function () {
