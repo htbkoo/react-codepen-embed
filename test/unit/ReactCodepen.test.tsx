@@ -5,21 +5,10 @@ import ReactCodepen from "../../src";
 import {ReactCodepenProps} from "../../src/ReactCodepen";
 
 describe('<ReactCodepen/>', function () {
-    it('should render "null" if not loaded and no loader provided', function () {
+    it('should contains .codepen wrapper with default props', function () {
         // given
         // when
         const wrapper = newWrapper();
-
-        // then
-        expect(wrapper.isEmptyRender()).toBe(true);
-    });
-
-    it('should render loader if not loaded and loader is provided', function () {
-        // given
-        const loader = <p id="loader"/>;
-
-        // when
-        const wrapper = newWrapper({loader: () => loader});
 
         // then
         assertWrapper(wrapper)
@@ -34,16 +23,9 @@ describe('<ReactCodepen/>', function () {
                 "data-preview": true,
                 "className": "codepen",
             });
-
-        assertWrapper(wrapper.find(".codepen"))
-            .contains({isLoading: true})
-            .thatHasProps({
-                isLoading: true,
-                error: undefined
-            });
     });
 
-    it('should render content if loaded', function () {
+    it('should pass appropriate props to .codepen wrapper', function () {
         // given
         const hash = "hash", user = "user", title = "title", height = 512, themeId = "theme", defaultTab = "defaultTab",
             version = 100, preview = false;
