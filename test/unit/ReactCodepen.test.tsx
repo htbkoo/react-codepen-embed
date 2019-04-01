@@ -1,5 +1,5 @@
 import * as React from "react";
-import {shallow} from "enzyme";
+import {shallow, ShallowWrapper} from "enzyme";
 
 import ReactCodepen from "../../src";
 import {ReactCodepenProps} from "../../src/ReactCodepen";
@@ -22,18 +22,18 @@ describe('<ReactCodepen/>', function () {
         const wrapper = newWrapper({loader: () => loader});
 
         // then
-        expect(wrapper.exists(".codepen")).toEqual(true);
-        const codepenWrapper = wrapper.find(".codepen");
-        expect(codepenWrapper.props()).toMatchObject({
-            "data-height": 300,
-            "data-theme-id": "dark",
-            "data-slug-hash": "someHash",
-            "data-default-tab": "css,result",
-            "data-user": "someUser",
-            "data-embed-version": 2,
-            "data-preview": true,
-            "className": "codepen",
-        });
+        assertWrapper(wrapper)
+            .contains(".codepen")
+            .thatHasProps({
+                "data-height": 300,
+                "data-theme-id": "dark",
+                "data-slug-hash": "someHash",
+                "data-default-tab": "css,result",
+                "data-user": "someUser",
+                "data-embed-version": 2,
+                "data-preview": true,
+                "className": "codepen",
+            });
 
         expect(wrapper.find(".codepen").exists("div")).toEqual(true);
     });
@@ -57,19 +57,19 @@ describe('<ReactCodepen/>', function () {
         });
 
         // then
-        expect(wrapper.exists(".codepen")).toEqual(true);
-        const codepenWrapper = wrapper.find(".codepen");
-        expect(codepenWrapper.props()).toMatchObject({
-            "data-height": height,
-            "data-theme-id": themeId,
-            "data-slug-hash": hash,
-            "data-default-tab": defaultTab,
-            "data-user": user,
-            "data-embed-version": version,
-            "data-pen-title": title,
-            "data-preview": preview,
-            "className": "codepen",
-        });
+        assertWrapper(wrapper)
+            .contains(".codepen")
+            .thatHasProps({
+                "data-height": height,
+                "data-theme-id": themeId,
+                "data-slug-hash": hash,
+                "data-default-tab": defaultTab,
+                "data-user": user,
+                "data-embed-version": version,
+                "data-pen-title": title,
+                "data-preview": preview,
+                "className": "codepen",
+            });
     });
 
     function newWrapper(overrides: Partial<ReactCodepenProps> = {}) {
@@ -81,5 +81,19 @@ describe('<ReactCodepen/>', function () {
                 {...overrides}
             />
         );
+    }
+
+    function assertWrapper(wrapper: ShallowWrapper) {
+        return {
+            contains(selector: string) {
+                expect(wrapper.exists(selector)).toEqual(true);
+                const codepenWrapper = wrapper.find(selector);
+                return {
+                    thatHasProps(expectedProps: object) {
+                        expect(codepenWrapper.props()).toMatchObject(expectedProps);
+                    }
+                }
+            }
+        };
     }
 });
