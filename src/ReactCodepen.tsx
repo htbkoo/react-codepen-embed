@@ -9,7 +9,7 @@ interface LoaderProps {
     error: ErrorType
 }
 
-interface ReactCodepenProps {
+export interface ReactCodepenProps {
     defaultTab: string,
     hash: string,
     height: number,

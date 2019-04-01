@@ -1,8 +1,8 @@
 import * as React from "react";
-import {when} from 'jest-when'
 import {shallow} from "enzyme";
 
 import ReactCodepen from "../../src";
+import {ReactCodepenProps} from "../../src/ReactCodepen";
 
 describe('<ReactCodepen/>', function () {
     it('should render "null" if not loaded and no loader provided', function () {
@@ -48,14 +48,13 @@ describe('<ReactCodepen/>', function () {
         });
     });
 
-    function newWrapper({loader = undefined, overrideAsLoaded = undefined} = {}) {
+    function newWrapper(overrides: Partial<ReactCodepenProps> = {}) {
         return shallow(
             <ReactCodepen
                 hash="someHash"
                 user="someUser"
                 shouldLoadScript={false}
-                loader={loader}
-                overrideAsLoaded={overrideAsLoaded}
+                {...overrides}
             />
         );
     }
