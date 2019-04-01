@@ -23,17 +23,6 @@ describe('<ReactCodepen/>', function () {
 
         // then
         expect(wrapper.exists(".codepen")).toEqual(true);
-        expect(wrapper.find(".codepen").exists("div")).toEqual(true);
-    });
-
-    it('should render content if loaded', function () {
-        // given
-        // when
-        const wrapper = newWrapper({overrideAsLoaded: true});
-
-        // then
-        expect(wrapper.exists(".codepen")).toEqual(true);
-
         const codepenWrapper = wrapper.find(".codepen");
         expect(codepenWrapper.props()).toMatchObject({
             "data-height": 300,
@@ -42,8 +31,43 @@ describe('<ReactCodepen/>', function () {
             "data-default-tab": "css,result",
             "data-user": "someUser",
             "data-embed-version": 2,
-            // "data-pen-title": "this.props.title",
             "data-preview": true,
+            "className": "codepen",
+        });
+
+        expect(wrapper.find(".codepen").exists("div")).toEqual(true);
+    });
+
+    it('should render content if loaded', function () {
+        // given
+        const hash = "hash", user = "user", title = "title", height = 512, themeId = "theme", defaultTab = "defaultTab",
+            version = 100, preview = false;
+
+        // when
+        const wrapper = newWrapper({
+            user,
+            hash,
+            title,
+            height,
+            themeId,
+            defaultTab,
+            version,
+            preview,
+            overrideAsLoaded: true
+        });
+
+        // then
+        expect(wrapper.exists(".codepen")).toEqual(true);
+        const codepenWrapper = wrapper.find(".codepen");
+        expect(codepenWrapper.props()).toMatchObject({
+            "data-height": height,
+            "data-theme-id": themeId,
+            "data-slug-hash": hash,
+            "data-default-tab": defaultTab,
+            "data-user": user,
+            "data-embed-version": version,
+            "data-pen-title": title,
+            "data-preview": preview,
             "className": "codepen",
         });
     });
