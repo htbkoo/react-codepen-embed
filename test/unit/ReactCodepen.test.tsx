@@ -26,13 +26,37 @@ describe('<ReactCodepen/>', function () {
         expect(wrapper.find(".codepen").exists("div")).toEqual(true);
     });
 
-    function newWrapper({loader = undefined} = {}) {
+    it('should render content if loaded', function () {
+        // given
+        // when
+        const wrapper = newWrapper({overrideAsLoaded: true});
+
+        // then
+        expect(wrapper.exists(".codepen")).toEqual(true);
+
+        const codepenWrapper = wrapper.find(".codepen");
+        expect(codepenWrapper.props()).toMatchObject({
+            "data-height": 300,
+            "data-theme-id": "dark",
+            "data-slug-hash": "someHash",
+            "data-default-tab": "css,result",
+            "data-user": "someUser",
+            "data-embed-version": 2,
+            // "data-pen-title": "this.props.title",
+            "data-preview": true,
+            "className": "codepen",
+        });
+    });
+
+    function newWrapper({loader = undefined, overrideAsLoaded = undefined} = {}) {
         return shallow(
             <ReactCodepen
                 hash="someHash"
                 user="someUser"
                 shouldLoadScript={false}
-                loader={loader}/>
+                loader={loader}
+                overrideAsLoaded={overrideAsLoaded}
+            />
         );
     }
 });
