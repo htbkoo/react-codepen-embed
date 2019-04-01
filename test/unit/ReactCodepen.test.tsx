@@ -11,6 +11,6 @@ describe('<ReactCodepen/>', function () {
         const wrapper = shallow(<ReactCodepen hash="someHash" user="someUser" shouldLoadScript={false}/>);
 
         // then
-        expect(wrapper.getElement()).toBe(null);
+        expect(wrapper.isEmptyRender()).toBe(true);
     });
 });
