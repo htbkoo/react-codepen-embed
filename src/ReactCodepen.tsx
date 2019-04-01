@@ -9,11 +9,13 @@ interface LoaderProps {
     error: ErrorType
 }
 
+type Loader = FunctionComponent<LoaderProps> | ComponentClass<LoaderProps> | string;
+
 export interface ReactCodepenProps {
     defaultTab: string,
     hash: string,
     height: number,
-    loader?: FunctionComponent<LoaderProps> | ComponentClass<LoaderProps> | string,
+    loader?: Loader,
     preview: boolean,
     title?: string,
     themeId: string | number,
