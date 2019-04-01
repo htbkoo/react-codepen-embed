@@ -16,7 +16,7 @@ describe('<ReactCodepen/>', function () {
 
     it('should render loader if not loaded and loader is provided', function () {
         // given
-        const loader = <div id="loader"/>;
+        const loader = <p id="loader"/>;
 
         // when
         const wrapper = newWrapper({loader: () => loader});
@@ -36,7 +36,11 @@ describe('<ReactCodepen/>', function () {
             });
 
         assertWrapper(wrapper.find(".codepen"))
-            .contains("div");
+            .contains({isLoading: true})
+            .thatHasProps({
+                isLoading: true,
+                error: undefined
+            });
     });
 
     it('should render content if loaded', function () {
@@ -86,7 +90,7 @@ describe('<ReactCodepen/>', function () {
 
     function assertWrapper(wrapper: ShallowWrapper) {
         return {
-            contains(selector: string) {
+            contains(selector) {
                 expect(wrapper.exists(selector)).toEqual(true);
                 const childWrapper = wrapper.find(selector);
                 return {
