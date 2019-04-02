@@ -6,7 +6,7 @@
     "responsive",
     "typescript"
   ],
-  "version": "0.3.4",
+  "version": "0.4.0",
   "description": "React component to embed codepen project, in typescript and with responsive height",
   "main": "lib/index.js",
   "files": [
