@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ReactCodepen/> - integration tests should render and match the snapshot 1`] = `
+exports[`<ReactCodepen/> - integration tests Not loading script should render and match the snapshot 1`] = `
 <div
   className="codepen"
   data-default-tab="css,result"
