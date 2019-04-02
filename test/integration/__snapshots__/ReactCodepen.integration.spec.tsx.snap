@@ -51,7 +51,7 @@ exports[`<ReactCodepen/> - integration tests Snapshot tests Not loading script s
   data-user="someUser"
 >
   <p>
-    loader
+    loader: isLoading: true, error: undefined
   </p>
 </div>
 `;

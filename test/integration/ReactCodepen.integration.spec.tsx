@@ -32,7 +32,7 @@ describe('<ReactCodepen/> - integration tests', function () {
             it('should, when loader is provided and not loaded, render and match the snapshot', function () {
                 const tree = renderer
                     .create(reactCodepen({
-                        loader: () => <p>loader</p>
+                        loader: ({isLoading, error}) => <p>{`loader: isLoading: ${isLoading}, error: ${error}`}</p>
                     }))
                     .toJSON();
 
