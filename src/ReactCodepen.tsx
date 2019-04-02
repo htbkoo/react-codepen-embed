@@ -1,26 +1,39 @@
 import * as React from 'react';
 import {Component, ComponentClass, FunctionComponent} from 'react';
+
 import CodepenEmbedScriptTagBuilder, {ScriptTagBuilder} from "./CodepenEmbedScriptTagBuilder";
+import ReactCodepenBody from "./ReactCodepenBody";
 
 type ErrorType = string;
 
-interface LoaderProps {
+export interface LoaderProps {
     isLoading: boolean,
     error: ErrorType
 }
 
-interface ReactCodepenProps {
-    defaultTab: string,
-    hash: string,
-    height: number,
-    loader?: FunctionComponent<LoaderProps> | ComponentClass<LoaderProps> | string,
-    preview: boolean,
-    title?: string,
-    themeId: string | number,
+type Loader = FunctionComponent<LoaderProps> | ComponentClass<LoaderProps> | string;
+
+export interface PropsTypes {
     user: string,
+    hash: string,
+
+    defaultTab: string,
+    height: number,
+    preview: boolean,
+    themeId: string | number,
     version: number,
     shouldLoadScript: boolean,
+
+    loader?: Loader,
+    title?: string,
     overrideAsLoaded?: boolean
+
+    isLoaded: boolean,
+    isLoading: boolean,
+    error?: ErrorType,
+}
+
+export interface ReactCodepenProps extends Pick<PropsTypes, "user" | "hash" | "defaultTab" | "height" | "preview" | "themeId" | "version" | "loader" | "title" | "shouldLoadScript" | "overrideAsLoaded"> {
 }
 
 interface ReactCodepenState {
@@ -67,25 +80,30 @@ class ReactCodepen extends Component<ReactCodepenProps, ReactCodepenState> {
     }
 
     render() {
-        if (this.isLoaded() || this.props.loader) {
-            return (
-                <div
-                    data-height={this.props.height}
-                    data-theme-id={this.props.themeId}
-                    data-slug-hash={this.props.hash}
-                    data-default-tab={this.props.defaultTab}
-                    data-user={this.props.user}
-                    data-embed-version={this.props.version}
-                    data-pen-title={this.props.title}
-                    data-preview={this.props.preview}
-                    className="codepen"
-                >
-                    {this.getContent()}
-                </div>
-            );
-        } else {
-            return null;
-        }
+        const {height, themeId, title, user, hash, defaultTab, preview, version, loader} = this.props;
+        return (
+            <div
+                data-height={height}
+                data-theme-id={themeId}
+                data-slug-hash={hash}
+                data-default-tab={defaultTab}
+                data-user={user}
+                data-embed-version={version}
+                data-pen-title={title}
+                data-preview={preview}
+                className="codepen"
+            >
+                <ReactCodepenBody
+                    user={user}
+                    hash={hash}
+                    loader={loader}
+                    title={title}
+                    isLoaded={this.isLoaded()}
+                    isLoading={this.state.loading}
+                    error={this.state.error}
+                />
+            </div>
+        );
     }
 
     private isLoaded() {
@@ -108,26 +126,6 @@ class ReactCodepen extends Component<ReactCodepenProps, ReactCodepenState> {
         this.setState({
             error: 'Failed to load the pen'
         });
-    }
-
-    private getContent() {
-        if (this.isLoaded()) {
-            const penLink = `https://codepen.io/${this.props.user}/pen/${this.props.hash}/`;
-            const userProfileLink = `https://codepen.io/${this.props.user}`;
-
-            return (
-                <div>
-                    See the Pen <a href={penLink}>{this.props.title}</a>
-                    by {this.props.user} (<a href={userProfileLink}>@{this.props.user}</a>)
-                    on <a href="https://codepen.io">CodePen</a>.
-                </div>
-            );
-        } else {
-            return React.createElement(this.props.loader, {
-                isLoading: this.state.loading,
-                error: this.state.error
-            });
-        }
     }
 }
 

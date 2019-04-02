@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ReactCodepen/> - integration tests Snapshot tests Not loading script should, when loaded, render and match the snapshot 1`] = `
+<div
+  className="codepen"
+  data-default-tab="defaultTab"
+  data-embed-version={100}
+  data-height={512}
+  data-pen-title="title"
+  data-preview={false}
+  data-slug-hash="hash"
+  data-theme-id="theme"
+  data-user="user"
+>
+  <div>
+    See the Pen 
+    <a
+      href="https://codepen.io/user/pen/hash/"
+    >
+      title
+    </a>
+    by 
+    user
+     (
+    <a
+      href="https://codepen.io/user"
+    >
+      @
+      user
+    </a>
+    ) on 
+    <a
+      href="https://codepen.io"
+    >
+      CodePen
+    </a>
+    .
+  </div>
+</div>
+`;
+
+exports[`<ReactCodepen/> - integration tests Snapshot tests Not loading script should, when loader is provided and not loaded, render and match the snapshot 1`] = `
+<div
+  className="codepen"
+  data-default-tab="css,result"
+  data-embed-version={2}
+  data-height={300}
+  data-preview={true}
+  data-slug-hash="someHash"
+  data-theme-id="dark"
+  data-user="someUser"
+>
+  <p>
+    loader: isLoading: true, error: undefined
+  </p>
+</div>
+`;
+
+exports[`<ReactCodepen/> - integration tests Snapshot tests Not loading script should, when not loaded and no loader provided, render and match the snapshot 1`] = `
+<div
+  className="codepen"
+  data-default-tab="css,result"
+  data-embed-version={2}
+  data-height={300}
+  data-preview={true}
+  data-slug-hash="someHash"
+  data-theme-id="dark"
+  data-user="someUser"
+/>
+`;
