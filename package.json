@@ -20,6 +20,7 @@
   "license": "MIT",
   "scripts": {
     "test": "jest --coverage",
+    "test:update-snapshot": "jest --updateSnapshot",
     "build": "tsc",
     "prepublish": "yarn build"
   },
