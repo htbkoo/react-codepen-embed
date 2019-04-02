@@ -8,7 +8,7 @@ describe('<ReactCodepen/> - integration tests', function () {
     it('should mount without error and render with ".codepen"', function () {
         // given
         // when
-        const wrapper = mount(<ReactCodepen hash="someHash" user="someUser" shouldLoadScript={false}/>);
+        const wrapper = mount(reactCodepen());
 
         // then
         expect(wrapper.find(".codepen").length).toEqual(1);
@@ -16,9 +16,13 @@ describe('<ReactCodepen/> - integration tests', function () {
 
     it('should render and match the snapshot', function () {
         const tree = renderer
-            .create(<ReactCodepen hash="someHash" user="someUser" shouldLoadScript={false}/>)
+            .create(reactCodepen())
             .toJSON();
 
         expect(tree).toMatchSnapshot();
     });
+
+    function reactCodepen() {
+        return <ReactCodepen hash="someHash" user="someUser" shouldLoadScript={false}/>;
+    }
 });
