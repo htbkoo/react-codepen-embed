@@ -2,6 +2,7 @@
 
 [![NPM](https://img.shields.io/npm/v/ts-react-codepen-embed.svg)](https://www.npmjs.com/package/ts-react-codepen-embed)
 [![Known Vulnerabilities](https://snyk.io/test/github/htbkoo/ts-react-codepen-embed/badge.svg?targetFile=package.json)](https://snyk.io/test/github/htbkoo/ts-react-codepen-embed?targetFile=package.json)
+[![Build Status](https://travis-ci.com/htbkoo/ts-react-codepen-embed.svg?branch=master)](https://travis-ci.com/htbkoo/ts-react-codepen-embed)
 
 React component for embedding pens from [`Codepen.io`](https://codepen.io), with responsive height and ability to embed multiple pens in the same page this time
 
