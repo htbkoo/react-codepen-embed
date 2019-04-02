@@ -1,14 +1,15 @@
 import * as React from "react";
-import {when} from 'jest-when'
 import {mount} from "enzyme";
 
 import ReactCodepen from "../../src";
 
 describe('<ReactCodepen/> - integration tests', function () {
-    it('should mount without error', function () {
+    it('should mount without error and render with ".codepen"', function () {
         // given
-        mount(<ReactCodepen hash="someHash" user="someUser" shouldLoadScript={false}/>);
         // when
+        const wrapper = mount(<ReactCodepen hash="someHash" user="someUser" shouldLoadScript={false}/>);
+
         // then
+        expect(wrapper.find(".codepen").length).toEqual(1);
     });
 });
